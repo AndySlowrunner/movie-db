@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { About } from './About/About';
-import { Movies } from './Movies/Movies';
+import { About } from './components/About/About';
+import { Movies } from './components/Movies/Movies';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const router = createBrowserRouter(
   [{
     path: '/',
-    element: <App />,
+    element:
+      <Provider store={store}>
+        <App />
+      </Provider>,
     children: [{
       path: '/about',
       element: <About />
@@ -27,7 +32,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </React.StrictMode>
 );
 
