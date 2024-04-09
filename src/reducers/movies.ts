@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 
-interface Movie {
+export interface Movie {
     id: number,
     title: string,
     popularity: number,
@@ -8,7 +8,7 @@ interface Movie {
 };
 
 interface MovieState {
-    top: Movie
+    top: Movie[]
 };
 
 const initialState: MovieState = {
