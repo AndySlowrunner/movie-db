@@ -1,14 +1,14 @@
 import { Action, Reducer } from "redux";
 
 export interface Movie {
-    id: number,
-    title: string,
-    popularity: number,
-    overview: string
+    id: number;
+    title: string;
+    popularity: number;
+    overview: string;
 };
 
 interface MovieState {
-    top: Movie[]
+    top: Movie[];
 };
 
 const initialState: MovieState = {
