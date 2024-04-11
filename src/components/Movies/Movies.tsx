@@ -3,10 +3,19 @@ import { connect } from 'react-redux';
 import { RootState } from '../../store';
 import { MovieCard } from './MovieCard';
 import style from './Movies.module.scss';
+import { useEffect, useState } from 'react';
 
 interface MoviesProps{
     movies: Movie[];
 };
+
+export function MovieFetch() {
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => { });
+
+    return <Movies movies={movies} />
+}
 
 function Movies ({ movies }: MoviesProps ) {
     return (
