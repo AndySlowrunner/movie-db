@@ -7,7 +7,7 @@ export async function getNowPlaying() {
         }
     };
 
-    const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+    const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options)
     const json = response.json();
     return json;
 };

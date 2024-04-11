@@ -4,6 +4,7 @@ import { RootState } from '../../store';
 import { MovieCard } from './MovieCard';
 import style from './Movies.module.scss';
 import { useEffect, useState } from 'react';
+import { getNowPlaying } from '../../api/tmdb';
 
 interface MoviesProps{
     movies: Movie[];
@@ -12,7 +13,14 @@ interface MoviesProps{
 export function MovieFetch() {
     const [movies, setMovies] = useState([]);
 
-    useEffect(() => { });
+    useEffect(() => {
+        async function LoadData() {
+            const response = await getNowPlaying();
+            setMovies(response.results);
+        };
+
+        LoadData();
+     }, []);
 
     return <Movies movies={movies} />
 }
@@ -22,7 +30,7 @@ function Movies ({ movies }: MoviesProps ) {
         <section>
             <div className={style.list}>
                 {movies.map((m)=>(
-                    <MovieCard key={m.id} id={m.id} title={m.title} overview={m.overview} popularity={m.popularity} />
+                    <MovieCard key={m.id} id={m.id} title={m.title} overview={m.overview} popularity={m.popularity} poster_path={m.poster_path} />
                 ))}
             </div>
         </section>
