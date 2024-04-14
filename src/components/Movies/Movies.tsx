@@ -4,7 +4,7 @@ import { RootState } from '../../store';
 import { MovieCard } from './MovieCard';
 import style from './Movies.module.scss';
 import { useEffect, useState } from 'react';
-import { getNowPlaying } from '../../api/tmdb';
+import { client } from '../../api/tmdb';
 
 interface MoviesProps{
     movies: Movie[];
@@ -15,7 +15,7 @@ export function MovieFetch() {
 
     useEffect(() => {
         async function LoadData() {
-            const response = await getNowPlaying();
+            const response = await client.getNowPlaying();
             setMovies(response.results);
         };
 
