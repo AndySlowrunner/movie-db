@@ -4,19 +4,19 @@ import { RootState } from '../../store';
 import { MovieCard } from './MovieCard';
 import style from './Movies.module.scss';
 import { useEffect, useState } from 'react';
-import { client } from '../../api/tmdb';
+import { MoviesDetails, client } from '../../api/tmdb';
 
 interface MoviesProps{
     movies: Movie[];
 };
 
 export function MovieFetch() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState<MoviesDetails[]>([]);
 
     useEffect(() => {
         async function LoadData() {
-            const response = await client.getNowPlaying();
-            setMovies(response.results);
+            const results = await client.getNowPlaying();
+            setMovies(results);
         };
 
         LoadData();
