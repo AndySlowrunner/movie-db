@@ -3,16 +3,16 @@ import style from './MovieCard.module.scss';
 
 interface MovieCardProp {
     id: number;
-    poster_path: string;
+    image?: string;
     title: string;
     overview: string;
     popularity: number;
 };
 
-export const MovieCard = ({ title, overview, popularity, id, poster_path }: MovieCardProp) => {
+export const MovieCard = ({ title, overview, popularity, id, image='../../../public/movie-poster.jpg' }: MovieCardProp) => {
     return (
         <div className={style.card}>
-            <img className={style.picture} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt="poster" />
+            <img className={style.picture} src={image} alt="poster" />
             <div className={style.content}>
                 <Link to={`/movie/${id}`}>{title}</Link>
                 <div className={style.overview}>{overview}</div>

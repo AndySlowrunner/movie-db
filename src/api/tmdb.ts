@@ -9,22 +9,22 @@ async function get<TBody>(relativeUrl: string): Promise<TBody> {
             }
         };
 
-        const response = await fetch(`${configuration.apiUrl}3${relativeUrl}`, options)
+        const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options)
         const json: TBody = await response.json();
         return json;
 };
 
 export interface MoviesDetails {
     id: number;
-    poster_path: string;
+    backdrop_path?: string;
     title: string;
     popularity: number;
     overview: string;
 };
 
-interface PageResponse<TResoult>{
+interface PageResponse<TResult>{
     page: number,
-    results: TResoult[],
+    results: TResult[],
 };
 
 interface Configuration {
@@ -39,6 +39,7 @@ export const client = {
     }, 
     async getNowPlaying(): Promise<MoviesDetails[]> {
         const response = await get<PageResponse<MoviesDetails>>('/movie/now_playing?page=1');
+        
         return response.results;
     },
 };

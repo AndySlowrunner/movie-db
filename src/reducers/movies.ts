@@ -2,7 +2,7 @@ import { Action, Reducer } from "redux";
 
 export interface Movie {
     id: number;
-    poster_path: string;
+    image?: string;
     title: string;
     popularity: number;
     overview: string;
@@ -14,10 +14,10 @@ interface MovieState {
 
 const initialState: MovieState = {
     top: [
-        { id: 1, title: "Inception", popularity: 98, overview: "Dreams...", poster_path: "" },
-        { id: 2, title: "The Godfather", popularity: 97, overview: "Godfather...", poster_path: "" },
-        { id: 3, title: "The Dark Knight", popularity: 96.5, overview: "Batman...", poster_path: "" },
-        { id: 4, title: "The Godfather Part II", popularity: 96, overview: "Part II...", poster_path: "" }
+        { id: 1, title: "Inception", popularity: 98, overview: "Dreams..." },
+        { id: 2, title: "The Godfather", popularity: 97, overview: "Godfather..." },
+        { id: 3, title: "The Dark Knight", popularity: 96.5, overview: "Batman..." },
+        { id: 4, title: "The Godfather Part II", popularity: 96, overview: "Part II..." }
     ]
 };
 

@@ -15,8 +15,19 @@ export function MovieFetch() {
 
     useEffect(() => {
         async function LoadData() {
+            const config = await client.getConfiguration();
+            const imageUrl = config.images.base_url;
             const results = await client.getNowPlaying();
-            setMovies(results);
+            
+            const mappedResults: Movie[] = results.map((m) => ({
+                id: m.id,
+                title: m.title,
+                popularity: m.popularity,
+                overview: m.overview,
+                image: m.backdrop_path ? `${imageUrl}w780${m.backdrop_path}` : undefined
+            }))
+
+            setMovies(mappedResults);
         };
 
         LoadData();
@@ -30,7 +41,7 @@ function Movies ({ movies }: MoviesProps ) {
         <section>
             <div className={style.list}>
                 {movies.map((m)=>(
-                    <MovieCard key={m.id} id={m.id} title={m.title} overview={m.overview} popularity={m.popularity} poster_path={m.poster_path} />
+                    <MovieCard key={m.id} id={m.id} title={m.title} overview={m.overview} popularity={m.popularity} image={m.image} />
                 ))}
             </div>
         </section>
