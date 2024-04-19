@@ -1,5 +1,7 @@
 import configuration from "../configuration";
 
+const apiBasePath = 'https://api.themoviedb.org/3';
+
 async function get<TBody>(relativeUrl: string): Promise<TBody> {
         const options = {
             method: 'GET',
@@ -9,7 +11,7 @@ async function get<TBody>(relativeUrl: string): Promise<TBody> {
             }
         };
 
-        const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options)
+        const response = await fetch(`${apiBasePath}${relativeUrl}`, options)
         const json: TBody = await response.json();
         return json;
 };
